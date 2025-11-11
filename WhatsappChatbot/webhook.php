@@ -33,7 +33,7 @@ $replyMsg = '';
 // Conversation flow based on current step
 switch($session['step']) {
     case 0: // Welcome message
-        $replyMsg = "👋 Welcome to *Tech Appliances Customer Support*!\n\n";
+        $replyMsg = "👋 Welcome to *RAJ Appliances Customer Support*!\n\n";
         $replyMsg .= "I'm here to help you register a complaint.\n\n";
         $replyMsg .= "Please provide your *full name*:";
         $session['step'] = 1;
@@ -180,3 +180,4 @@ echo $xml;
 // Prevent any further output
 exit();
 ?>
+
