@@ -1,6 +1,8 @@
+# Use the official PHP + Apache image
 FROM php:8.2-apache
 
-# Copy the PHP folder into the container's web root
-COPY "Whatsapp Chatbot/" /var/www/html/
+# Copy your PHP folder into Apache's web root
+COPY WhatsappChatbot/ /var/www/html/
 
+# Expose port 80
 EXPOSE 80
