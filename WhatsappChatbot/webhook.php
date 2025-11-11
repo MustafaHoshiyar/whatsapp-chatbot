@@ -114,8 +114,18 @@ function saveComplaint($session, $phone) {
         'timestamp' => $session['timestamp'],
         'status' => 'Open'
     ];
+
+    $googleScriptUrl = "https://script.google.com/macros/s/AKfycbyBGNqTtXI9aMV10ZKCu-43TsE5daqTzYEg37qSHMfWnrhdF67wsvqTgkbIIzGS5Yir/exec";
+
+    $ch = curl_init($googleScriptUrl);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($complaint));
+    curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
+    $response = curl_exec($ch);
+    curl_close($ch);
     
-    if (!file_exists('complaints')) {
+   /* if (!file_exists('complaints')) {
         mkdir('complaints', 0777, true);
     }
     
@@ -127,6 +137,7 @@ function saveComplaint($session, $phone) {
             $session['name'] . " | " . $session['product'] . " | " . 
             $session['complaint'] . "\n";
     file_put_contents($masterFile, $line, FILE_APPEND);
+    */
 }
 
 function notifyOwner($session, $phone, $accountSid, $authToken, $twilioNumber, $ownerWhatsApp) {
@@ -180,4 +191,5 @@ echo $xml;
 // Prevent any further output
 exit();
 ?>
+
 
